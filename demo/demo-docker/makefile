@@ -26,5 +26,12 @@ demo:
 		"$(shell pwd)/conf/keystore" \
 		"$(shell pwd)/conf/pwd.txt"
 
-.PHONY: up images conf start watch stop demo
+
+demolottery: 
+	./scripts/demolottery.sh $(nodes) 8080 \
+		"$(shell pwd)/../nodejs/lottery.sol" \
+		"$(shell pwd)/conf/keystore" \
+		"$(shell pwd)/conf/pwd.txt"
+
+.PHONY: up images conf start watch stop demo demolottery
 	
