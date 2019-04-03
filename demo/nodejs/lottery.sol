@@ -3,10 +3,12 @@ pragma solidity ^0.4.18;
 contract LotteryContract {
 
   uint constant standardStake = 100;
-  uint constant numberOfPrizeAccounts = 3;
-
   bytes32 name;
+  HouseAccount houseAccount; 
 
+  Entry[] entries;
+  bytes32 drawSeed;
+  PrizeAccount[] prizeAccounts;
 
   struct HouseAccount {
     address beneficiary;
@@ -14,7 +16,6 @@ contract LotteryContract {
     uint payments;
   }
 
-  HouseAccount houseAccount; 
 
   struct PrizeAccount {
     uint balance;
@@ -24,10 +25,6 @@ contract LotteryContract {
     uint wins;
     uint payouts;    
   }
-
-  PrizeAccount[] prizeAccounts;
-
-
 
   event NewStake(
     address houseAccount,
@@ -41,16 +38,10 @@ contract LotteryContract {
     uint amount
   );
 
-
   event Settlement(
     bool ok
   );
 
-
-  struct Player {
-    address addr;
-    uint balance;
-  }
 
   struct Entry {
     address addr;
@@ -58,9 +49,6 @@ contract LotteryContract {
     bool closedDraw;
   }
 
-  Entry[] entries;
-
-  bytes32 drawSeed;
 
 
   function LotteryContract() public {
